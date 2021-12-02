@@ -1,5 +1,3 @@
-package day1;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
@@ -10,7 +8,7 @@ class DepthMeassurements {
         DepthMeassurements dm = new DepthMeassurements();
         int[] intArray;
         try {
-            intArray = dm.processFile();
+            intArray = dm.processFileDay1();
         } catch (FileNotFoundException e){
             intArray = new int[0];
         };
@@ -18,8 +16,8 @@ class DepthMeassurements {
         System.out.println("meassurements increased: " + dm.GetMeasurementsLarger(dm.ArrayOfSums(intArray)));
     }
 
-    public static int[] processFile() throws FileNotFoundException {
-        Scanner scanner = new Scanner(new File("day1/meassurements.txt"));
+    public static int[] processFileDay1() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("meassurements.txt"));
         List<Integer> meassurements = new ArrayList<Integer>();
         int i = 0;
         while(scanner.hasNextInt()){
