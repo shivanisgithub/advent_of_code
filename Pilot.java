@@ -15,7 +15,17 @@ public class Pilot {
             intArrays = new ArrayList<>();
         };
 
+        int result;
+        try {
+            result = p.processFileDifferently();
+        } catch (FileNotFoundException e){
+            result = 0;
+        };
+
         System.out.println("sum of coordinates:" + p.Sum(intArrays.get(0)) * p.Sum(intArrays.get(1)));
+        System.out.println("sum of coordinates after manual:" + result);
+
+
     }
 
     public static List<int[]> processFile() throws FileNotFoundException {
@@ -60,5 +70,29 @@ public class Pilot {
             result += values[i];
         }
         return result;
+    }
+
+    public static int processFileDifferently() throws FileNotFoundException {
+        Scanner scanner = new Scanner(new File("data.txt"));
+        int aim = 0;
+        int horizontal = 0;
+        int depth = 0;
+
+        while (scanner.hasNext()) {
+            String next = scanner.next();
+            if (next.equals("down")) {
+                aim += scanner.nextInt();
+            }
+            if (next.equals("up")) {
+                aim -= scanner.nextInt();
+            }
+            if (next.equals("forward")) {
+                int nextInt = scanner.nextInt();
+                horizontal += nextInt;
+                depth += aim * nextInt;
+            }
+        }
+
+        return horizontal*depth;
     }
 }
